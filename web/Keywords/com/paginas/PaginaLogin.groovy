@@ -1,4 +1,4 @@
-package com.contact
+package com.paginas
 
 import static com.kms.katalon.core.checkpoint.CheckpointFactory.findCheckpoint
 import static com.kms.katalon.core.testcase.TestCaseFactory.findTestCase
@@ -18,41 +18,41 @@ import com.kms.katalon.core.webservice.keyword.WSBuiltInKeywords as WS
 import com.kms.katalon.core.webui.keyword.WebUiBuiltInKeywords as WebUI
 import com.kms.katalon.core.windows.keyword.WindowsBuiltinKeywords as Windows
 
-import groovy.json.JsonSlurper
 import internal.GlobalVariable
-import sun.java2d.cmm.kcms.pelArrayInfo
 
-public class BuscarContato {
+public class PaginaLogin {
 
-	JsonSlurper slurper = new JsonSlurper()
+	private TestObject inputUserName  =	findTestObject('PaginaLogin/input_User_Name')
+	private TestObject inputPassword  =	findTestObject('PaginaLogin/input_Password')
+	private TestObject buttonSubmit  =	findTestObject('PaginaLogin/input_Submit')
+	private TestObject paginaFlights  =	findTestObject('PaginaFlights/a_Flights')
 
-	def buscarContatos(){
 
-		def getContatos = WS.sendRequest(findTestObject('Contato/BuscarContatos'))
-
-		def message = WS.verifyResponseStatusCode(getContatos, 200)
-
-		println message
-
-		return message
+	@Keyword
+	def login (String nome, String password){
+		enterUsername(nome)
+		enterPassword(password)
+		WebUI.takeScreenshot()
 	}
 
-	def buscarContatoPorID(String idContato){
+	@Keyword
+	def enterUsername (String nome){
+		WebUI.setText(inputUserName, nome)
+	}
 
-		def getContato = WS.sendRequest(findTestObject('Contato/BuscarContato', [('idContato') : idContato]))
+	@Keyword
+	def enterPassword (String password) {
+		WebUI.setText(inputPassword, password)
+	}
 
-		def parseResponse = slurper.parseText(getContato.getResponseBodyContent().toString())
+	@Keyword
+	def clickButtonLogin(){
+		WebUI.click(buttonSubmit)
+	}
 
-		println (getContato.getResponseBodyContent().toString())
-
-		def getIdContato =  parseResponse.get("id")
-
-		println getIdContato
-
-		def message = WS.verifyResponseStatusCode(getContato, 200)
-
-		println message
-
-		return getIdContato
+	@Keyword
+	def validaPaginaFlights(){
+		WebUI.verifyElementPresent(findTestObject('PaginaFlights/a_Flights'), 5)
+		WebUI.takeScreenshot()
 	}
 }

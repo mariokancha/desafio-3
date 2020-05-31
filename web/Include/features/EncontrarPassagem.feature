@@ -18,5 +18,5 @@ Feature: Encontrar Passagem
 
     Examples: 
       | quantidade  | onde esta partindo | mes de partida  | dia da partida | onde vai | mes da volta | dia da volta | CIA |
-      | 1           |     London         | 5               |    15          | New York | 7            | 11           | Blue Skies Airlines|
+      | 2           |     London         | 5               |    15          | New York | 7            | 11           | Blue Skies Airlines|
      

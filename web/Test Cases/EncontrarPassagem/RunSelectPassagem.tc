@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <TestCaseEntity>
    <description></description>
-   <name>SelecionarPassagemFeature</name>
+   <name>RunSelectPassagem</name>
    <tag></tag>
    <comment></comment>
-   <testCaseGuid>622d3197-499d-45db-87cd-4b28f83cdf42</testCaseGuid>
+   <testCaseGuid>05883635-016a-476f-b31d-dd3c9078cbe8</testCaseGuid>
 </TestCaseEntity>

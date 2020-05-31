@@ -1,8 +1,9 @@
-package loginPagina
+package loginSteps
 import static com.kms.katalon.core.checkpoint.CheckpointFactory.findCheckpoint
 import static com.kms.katalon.core.testcase.TestCaseFactory.findTestCase
 import static com.kms.katalon.core.testdata.TestDataFactory.findTestData
 import static com.kms.katalon.core.testobject.ObjectRepository.findTestObject
+
 
 import com.kms.katalon.core.annotation.Keyword
 import com.kms.katalon.core.checkpoint.Checkpoint
@@ -17,6 +18,7 @@ import com.kms.katalon.core.testobject.ObjectRepository
 import com.kms.katalon.core.testobject.TestObject
 import com.kms.katalon.core.webservice.keyword.WSBuiltInKeywords as WS
 import com.kms.katalon.core.webui.keyword.WebUiBuiltInKeywords as WebUI
+import com.paginas.PaginaLogin
 
 import internal.GlobalVariable
 
@@ -43,8 +45,10 @@ import cucumber.api.java.en.Then
 import cucumber.api.java.en.When
 
 
-class LoginSteps {
-	
+class StepsLogin {
+
+	PaginaLogin login = new PaginaLogin()
+
 	@Given("Acesso a pagina de login")
 	def paginaDeLogin() {
 		WebUI.openBrowser('')
@@ -52,18 +56,17 @@ class LoginSteps {
 	}
 
 	@When("Entrar com (.*) e (.*)")
-	def entrarCredenciais(String name, String password) {
-		WebUI.setText(findTestObject('PaginaLogin/input_User_Name'), name)
-		WebUI.setText(findTestObject('PaginaLogin/input_Password'), password)
+	def entrarCredenciais(String nome, String password) {
+		login.login(nome, password)
 	}
-	
+
 	@And("Clicar no botão submit")
 	def clicarSubmit(){
-		WebUI.click(findTestObject('PaginaLogin/input_Submit'))
+		login.clickButtonLogin()
 	}
 
 	@Then("Login realizado com sucesso")
 	def validaLogin() {
-	  WebUI.verifyElementPresent(findTestObject('PaginaFlights/a_Flights'), 5)
+		login.validaPaginaFlights()
 	}
 }

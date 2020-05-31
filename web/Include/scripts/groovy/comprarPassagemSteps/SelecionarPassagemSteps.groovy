@@ -1,4 +1,4 @@
-package comprarPassagem
+package comprarPassagemSteps
 import static com.kms.katalon.core.checkpoint.CheckpointFactory.findCheckpoint
 import static com.kms.katalon.core.testcase.TestCaseFactory.findTestCase
 import static com.kms.katalon.core.testdata.TestDataFactory.findTestData
@@ -17,6 +17,7 @@ import com.kms.katalon.core.testobject.ObjectRepository
 import com.kms.katalon.core.testobject.TestObject
 import com.kms.katalon.core.webservice.keyword.WSBuiltInKeywords as WS
 import com.kms.katalon.core.webui.keyword.WebUiBuiltInKeywords as WebUI
+import com.paginas.PaginaSelecionarPassagem
 
 import internal.GlobalVariable
 
@@ -43,66 +44,67 @@ import cucumber.api.java.en.Then
 import cucumber.api.java.en.When
 
 
-
 class SelecionarPassagemSteps {
+
+	PaginaSelecionarPassagem passagem = new PaginaSelecionarPassagem()
 
 	@Given("Esta na pagina de Flights Finder")
 	def paginaDeSelecionarPassagem() {
-		WebUI.verifyElementPresent(findTestObject('PaginaFlights/a_Flights'), 5)
+		passagem.validaPagina()
 	}
 
 	@When("Selecionar ida e volta")
 	def tipoDaCompra() {
-		WebUI.click(findTestObject('PaginaFlights/PaginaEncontrarPassagem/input_Round_Trip_One_Way'))
+		passagem.tipoDaCompraKey()
 	}
 
 	@And("escolher a (.*) de passageiros")
-	def quantidadePassageiro(String qntpassageiros){
-		WebUI.selectOptionByValue(findTestObject('PaginaFlights/PaginaEncontrarPassagem/select_Qnt_Passageiros'), qntpassageiros, true)
+	def quantidadePassageiro(String qntpassageiro){
+		passagem.quantidadePassageiroKey(qntpassageiro)
 	}
 
 	@And("escolher de (.*)")
 	def localDePartida(String localpartida){
-		WebUI.selectOptionByValue(findTestObject('PaginaFlights/PaginaEncontrarPassagem/select_Partindo_de'), localpartida, true)
+		passagem.localDePartidaKey(localpartida)
 	}
 
 	@And("escolher o M (.*)")
 	def mesDePartida(String mespartida){
-		WebUI.selectOptionByValue(findTestObject('PaginaFlights/PaginaEncontrarPassagem/select_Mes_da _Partida'), mespartida, true)
+		passagem.mesDePartidaKey(mespartida)
 	}
 
 	@And("escolher o D (.*)")
 	def diaPartida(String diapartida){
-		WebUI.selectOptionByValue(findTestObject('PaginaFlights/PaginaEncontrarPassagem/select_dia_da_partida'), diapartida, true)
+		passagem.diaPartidaKey(diapartida)
 	}
 
 	@And("escolher para (.*)")
 	def localDeChegada(String localchegada){
-		WebUI.selectOptionByValue(findTestObject('PaginaFlights/PaginaEncontrarPassagem/select_Voltando_de'), localchegada, true)
+		passagem.localDeChegadaKey(localchegada)
 	}
 
 	@And("escolher o m (.*)")
 	def mesDaVolta(String mesvolta){
-		WebUI.selectOptionByValue(findTestObject('PaginaFlights/PaginaEncontrarPassagem/select_Mes_da _Volta'), mesvolta, true)
+		passagem.mesDaVoltaKey(mesvolta)
 	}
 
 	@And("escolher o d (.*)")
 	def diaDaVolta(String diavolta){
-		WebUI.selectOptionByValue(findTestObject('PaginaFlights/PaginaEncontrarPassagem/select_dia_da_volta'), diavolta, true)
+		passagem.diaDaVoltaKey(diavolta)
 	}
 
 	@And("escolher a classe de servico")
 	def classeServico(){
-		WebUI.click(findTestObject('PaginaFlights/PaginaEncontrarPassagem/input_Service_Classe'))
+		passagem.classeServicoKey()
 	}
 
 	@And("escolher a (.*) aerea")
 	def ciaAerea(String cia){
-		WebUI.selectOptionByValue(findTestObject('PaginaFlights/PaginaEncontrarPassagem/select_Airline'), cia, true)
+		passagem.ciaAereaKey(cia)
 	}
 
 	@Then("clicar no botao continue")
 	def botaoContinue(){
-		WebUI.click(findTestObject('PaginaFlights/PaginaEncontrarPassagem/input_Continue'))
+		passagem.botaoContinueKey()
 	}
 }

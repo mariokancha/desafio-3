@@ -22,22 +22,21 @@ import groovy.json.JsonSlurper
 import internal.GlobalVariable
 
 public class CriarContact {
-	
+
 	JsonSlurper slurper = new JsonSlurper()
-	
+
 	boolean crarContact(String pais, String nome, String email){
-		
-	  def postContact = WS.sendRequest(findTestObject('Contato/Criação de contato', [('pais') : pais, ('nome') : nome, ('email') : email]))
-	  
-	  def parseResponse = slurper.parseText(postContact.getResponseBodyContent().toString())
-	  
-	  println (postContact.getResponseBodyContent().toString())
-	  
-	  def message = WS.verifyResponseStatusCode(postContact, 201)
-	  
-	  println message
-	  
-	  return message
-	  
+
+		def postContact = WS.sendRequest(findTestObject('Contato/Criação de contato', [('pais') : pais, ('nome') : nome, ('email') : email]))
+
+		def parseResponse = slurper.parseText(postContact.getResponseBodyContent().toString())
+
+		println (postContact.getResponseBodyContent().toString())
+
+		def message = WS.verifyResponseStatusCode(postContact, 201)
+
+		println message
+
+		return message
 	}
 }
