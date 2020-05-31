@@ -20,4 +20,4 @@ import internal.GlobalVariable as GlobalVariable
 BuscarContato contato = new BuscarContato()
 
 assert contato.buscarContatos() == true
-assert contato.buscarContatoPorID("33") == "37"
+assert contato.buscarContatoPorID("33") == "40"
