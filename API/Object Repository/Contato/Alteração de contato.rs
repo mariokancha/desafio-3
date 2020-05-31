@@ -1,15 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <WebServiceRequestEntity>
    <description></description>
-   <name>BuscarContato</name>
+   <name>Alteração de contato</name>
    <tag></tag>
-   <elementGuidId>0a5cd725-5872-4f66-9854-a47aa420fe2b</elementGuidId>
+   <elementGuidId>ad03ce9b-fd7d-4b3a-b5d9-f020bafc065e</elementGuidId>
    <selectorMethod>BASIC</selectorMethod>
    <useRalativeImagePath>false</useRalativeImagePath>
    <followRedirects>false</followRedirects>
    <httpBody></httpBody>
-   <httpBodyContent></httpBodyContent>
-   <httpBodyType></httpBodyType>
+   <httpBodyContent>{
+  &quot;text&quot;: &quot; {\n \&quot;id\&quot;: \&quot;${id}\&quot;,\n \&quot;pais\&quot;: \&quot;${pais}\&quot;,\n \&quot;nome\&quot;: \&quot;${nome}\&quot;,\n \&quot;email\&quot;: \&quot;${email}\&quot;\n }\n&quot;,
+  &quot;contentType&quot;: &quot;application/json&quot;,
+  &quot;charset&quot;: &quot;UTF-8&quot;
+}</httpBodyContent>
+   <httpBodyType>text</httpBodyType>
    <httpHeaderProperties>
       <isSelected>true</isSelected>
       <matchCondition>equals</matchCondition>
@@ -18,8 +22,8 @@
       <value>application/json</value>
    </httpHeaderProperties>
    <migratedVersion>5.4.1</migratedVersion>
-   <restRequestMethod>GET</restRequestMethod>
-   <restUrl>https://5ebec0beec800c0016043e6f.mockapi.io/contact/${idContato}</restUrl>
+   <restRequestMethod>PUT</restRequestMethod>
+   <restUrl>https://5ebec0beec800c0016043e6f.mockapi.io/contact/${id}</restUrl>
    <serviceType>RESTful</serviceType>
    <soapBody></soapBody>
    <soapHeader></soapHeader>
@@ -28,9 +32,30 @@
    <variables>
       <defaultValue>'126'</defaultValue>
       <description></description>
-      <id>38b9a842-0ca3-4751-97b3-b8a62b0bf42b</id>
+      <id>7f4b49f4-f7fa-4d35-8216-f9d0ca765df4</id>
       <masked>false</masked>
-      <name>idContato</name>
+      <name>id</name>
+   </variables>
+   <variables>
+      <defaultValue>'Argentina'</defaultValue>
+      <description></description>
+      <id>322a0ee7-8ec6-40b3-9ccf-424075523f2b</id>
+      <masked>false</masked>
+      <name>pais</name>
+   </variables>
+   <variables>
+      <defaultValue>'Igor Silva'</defaultValue>
+      <description></description>
+      <id>91c40bf2-0115-4dda-bab6-6eeda3655279</id>
+      <masked>false</masked>
+      <name>nome</name>
+   </variables>
+   <variables>
+      <defaultValue>'igordavi@gmail.com'</defaultValue>
+      <description></description>
+      <id>6fd146b9-619b-48e5-99a2-8525c35eef38</id>
+      <masked>false</masked>
+      <name>email</name>
    </variables>
    <verificationScript>import static org.assertj.core.api.Assertions.*
 

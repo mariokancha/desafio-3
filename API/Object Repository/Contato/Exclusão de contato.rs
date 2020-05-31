@@ -1,25 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <WebServiceRequestEntity>
    <description></description>
-   <name>BuscarContato</name>
+   <name>Exclusão de contato</name>
    <tag></tag>
-   <elementGuidId>0a5cd725-5872-4f66-9854-a47aa420fe2b</elementGuidId>
+   <elementGuidId>cab72a33-4350-4361-baec-e79a6d1bd6fa</elementGuidId>
    <selectorMethod>BASIC</selectorMethod>
    <useRalativeImagePath>false</useRalativeImagePath>
    <followRedirects>false</followRedirects>
    <httpBody></httpBody>
-   <httpBodyContent></httpBodyContent>
-   <httpBodyType></httpBodyType>
-   <httpHeaderProperties>
-      <isSelected>true</isSelected>
-      <matchCondition>equals</matchCondition>
-      <name>Content-Type</name>
-      <type>Main</type>
-      <value>application/json</value>
-   </httpHeaderProperties>
+   <httpBodyContent>{
+  &quot;text&quot;: &quot;&quot;,
+  &quot;contentType&quot;: &quot;text/plain&quot;,
+  &quot;charset&quot;: &quot;UTF-8&quot;
+}</httpBodyContent>
+   <httpBodyType>text</httpBodyType>
    <migratedVersion>5.4.1</migratedVersion>
-   <restRequestMethod>GET</restRequestMethod>
-   <restUrl>https://5ebec0beec800c0016043e6f.mockapi.io/contact/${idContato}</restUrl>
+   <restRequestMethod>DELETE</restRequestMethod>
+   <restUrl>https://5ebec0beec800c0016043e6f.mockapi.io/contact/${id}</restUrl>
    <serviceType>RESTful</serviceType>
    <soapBody></soapBody>
    <soapHeader></soapHeader>
@@ -28,9 +25,9 @@
    <variables>
       <defaultValue>'126'</defaultValue>
       <description></description>
-      <id>38b9a842-0ca3-4751-97b3-b8a62b0bf42b</id>
+      <id>0c1c972a-df32-42b1-936d-65b34ff07a68</id>
       <masked>false</masked>
-      <name>idContato</name>
+      <name>id</name>
    </variables>
    <verificationScript>import static org.assertj.core.api.Assertions.*
 

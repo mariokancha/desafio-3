@@ -33,7 +33,7 @@ public class CriarContact {
 
 		println (postContact.getResponseBodyContent().toString())
 
-		def message = WS.verifyResponseStatusCode(postContact, 201)
+		def message = WS.verifyResponseStatusCode(postContact, 201,  FailureHandling.STOP_ON_FAILURE)
 
 		println message
 

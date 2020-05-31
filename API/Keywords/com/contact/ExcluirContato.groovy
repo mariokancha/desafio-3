@@ -20,39 +20,21 @@ import com.kms.katalon.core.windows.keyword.WindowsBuiltinKeywords as Windows
 
 import groovy.json.JsonSlurper
 import internal.GlobalVariable
-import sun.java2d.cmm.kcms.pelArrayInfo
 
-public class BuscarContato {
+public class ExcluirContato {
 
-	JsonSlurper slurper = new JsonSlurper()
+	JsonSlurper sluper = new JsonSlurper()
 
-	def buscarContatos(){
+	def excluirContato(String id){
 
-		def getContatos = WS.sendRequest(findTestObject('Contato/BuscarContatos'))
+		def sendExcluirContato = WS.sendRequest(findTestObject('Contato/Exclusão de contato', [('id') : id]))
 
-		def message = WS.verifyResponseStatusCode(getContatos, 200,  FailureHandling.STOP_ON_FAILURE)
+		def parseResponse = sluper.parseText(sendExcluirContato.getResponseBodyContent().toString())
 
-		println message
+		println (parseResponse)
+
+		def message = WS.verifyResponseStatusCode(sendExcluirContato, 200, FailureHandling.STOP_ON_FAILURE)
 
 		return message
-	}
-
-	def buscarContatoPorID(String idContato){
-
-		def getContato = WS.sendRequest(findTestObject('Contato/BuscarContato', [('idContato') : idContato]))
-
-		def parseResponse = slurper.parseText(getContato.getResponseBodyContent().toString())
-
-		println (getContato.getResponseBodyContent().toString())
-
-		def getIdContato =  parseResponse.get("id")
-
-		println getIdContato
-
-		def message = WS.verifyResponseStatusCode(getContato, 200,  FailureHandling.STOP_ON_FAILURE)
-
-		println message
-
-		return getIdContato
 	}
 }

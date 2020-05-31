@@ -17,42 +17,24 @@ import com.kms.katalon.core.testobject.TestObject
 import com.kms.katalon.core.webservice.keyword.WSBuiltInKeywords as WS
 import com.kms.katalon.core.webui.keyword.WebUiBuiltInKeywords as WebUI
 import com.kms.katalon.core.windows.keyword.WindowsBuiltinKeywords as Windows
-
 import groovy.json.JsonSlurper
 import internal.GlobalVariable
-import sun.java2d.cmm.kcms.pelArrayInfo
 
-public class BuscarContato {
+public class AlterarContato {
 
 	JsonSlurper slurper = new JsonSlurper()
 
-	def buscarContatos(){
+	boolean alterarContato(String id, String pais, String nome, String email){
 
-		def getContatos = WS.sendRequest(findTestObject('Contato/BuscarContatos'))
+		def sendAlterarContato = WS.sendRequest(findTestObject('Contato/Alteração de contato', [('id') : id, ('pais') : pais, ('nome') : nome, ('email') : email]))
 
-		def message = WS.verifyResponseStatusCode(getContatos, 200,  FailureHandling.STOP_ON_FAILURE)
+		def parseResponse = slurper.parseText(sendAlterarContato.getResponseBodyContent().toString())
 
-		println message
+		println (parseResponse)
+		println (sendAlterarContato.getResponseBodyContent().toString())
+
+		def message  = WS.verifyResponseStatusCode(sendAlterarContato, 200,  FailureHandling.STOP_ON_FAILURE)
 
 		return message
-	}
-
-	def buscarContatoPorID(String idContato){
-
-		def getContato = WS.sendRequest(findTestObject('Contato/BuscarContato', [('idContato') : idContato]))
-
-		def parseResponse = slurper.parseText(getContato.getResponseBodyContent().toString())
-
-		println (getContato.getResponseBodyContent().toString())
-
-		def getIdContato =  parseResponse.get("id")
-
-		println getIdContato
-
-		def message = WS.verifyResponseStatusCode(getContato, 200,  FailureHandling.STOP_ON_FAILURE)
-
-		println message
-
-		return getIdContato
 	}
 }
